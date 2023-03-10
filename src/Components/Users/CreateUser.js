@@ -8,6 +8,7 @@ const CreateUser = props => {
 
   const [inputName, setInputName] = useState("");
   const [inputAge, setInputAge] = useState("");
+  const [error, setError] = useState(undefined);
 
   const nameChangeHandler = event => {
     setInputName(event.target.value);
@@ -21,11 +22,21 @@ const CreateUser = props => {
     event.preventDefault();
 
     if (inputName.trim().length === 0 || inputAge.trim().length === 0) {
-      console.log("Data is not valid");
+      setError(
+        {
+          title: "Input error",
+          message: "Data is not valid"
+        }
+      );
       return;
     }
     if (+inputAge < 1) {
-      console.log("Age cannot be negative");
+      setError(
+        {
+          title: "Age is not valid",
+          message: "Age cannot be negative"
+        }
+      );
       return;
     }
 
@@ -35,11 +46,15 @@ const CreateUser = props => {
     setInputAge("");
   }
 
+  const closeErrorHandler = () => {
+    setError(undefined);
+  }
+
   return (
     <div>
-    <ErrorModal title="Error" message="Something went wrong" />
+      {error && <ErrorModal title={error.title} message={error.message} onClose={closeErrorHandler}/>}
       <Card className={styles.input}>
-        <form onSubmit={createUserHandler} >
+        <form onSubmit={createUserHandler}>
           <label htmlFor="name">Name</label>
           <input
             id="name"
