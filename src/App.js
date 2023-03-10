@@ -1,5 +1,11 @@
+import CreateUser from "./Components/Users/CreateUser";
+
 const App = () => {
-  return <div></div>;
+  return (
+    <div>
+      <CreateUser />;
+    </div>
+  );
 };
 
 export default App;
