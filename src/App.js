@@ -1,6 +1,6 @@
 import CreateUser from "./Components/Users/CreateUser";
 import UserList from "./Components/Users/UserList";
-import {useState} from "react";
+import {useState, Fragment} from "react";
 
 const App = () => {
 
@@ -10,12 +10,11 @@ const App = () => {
     setUserList([...userList, {name: inputName, age: inputAge, id: Math.random()}]) //todo
   }
 
-
   return (
-    <div>
+    <Fragment>
       <CreateUser onCreateUser={createUserHandler}/>
       <UserList users={userList} />
-    </div>
+    </Fragment>
   );
 };
 
