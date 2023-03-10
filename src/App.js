@@ -3,7 +3,7 @@ import CreateUser from "./Components/Users/CreateUser";
 const App = () => {
   return (
     <div>
-      <CreateUser />;
+      <CreateUser />
     </div>
   );
 };
